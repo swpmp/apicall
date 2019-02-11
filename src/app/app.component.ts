@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
   public callBtc() {
     const bitcoin$ = this.http.get('https://blockchain.info/ticker');
     return new Promise(resolve => {
+      // interval(10000) => 10 seconds
       this.polledBitcoin$ = interval(10000).pipe(
         concatMap(_ => bitcoin$),
         map((response: {EUR: {last: number}}) => response.EUR.last),
